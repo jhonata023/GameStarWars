@@ -3,102 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Star Wars</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            color: white;
-        }
-
-        @keyframes vilao{
-            from {
-                right: -80px;
-            }
-
-            to {
-                right: 100%;
-            }
-        }
-
-        @keyframes personagem {
-            0% {
-                bottom: 0;
-            }
-
-            40% {
-                bottom: 150px;
-            }
-
-            60% {
-                bottom: 150px;
-            }
-
-            100% {
-                bottom: 0;
-            }
-
-        }
-
-        .none {
-            display: none;
-        }
-
-        .container {
-            position: relative;
-            overflow: hidden;
-            width: 800px;
-            height: 500px;
-
-            border: solid 1px;
-
-            background-image: url(arquivos/fundo.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-
-        img{
-            height: 100px;
-        }
-
-        .vilao {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-
-            animation: vilao 2s infinite linear;
-        }
-
-        .pular {
-            animation: personagem 0.8s ease-out;
-        }
-
-        .personagem {
-            position: absolute;
-            bottom: 0;
-        }
-
-        .reload {
-            position: absolute;
-            bottom: 50%;
-            right: 50%;
-
-            height: 50px;
-            width: 50px;
-
-            cursor: pointer;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -112,50 +19,6 @@
         <img src="arquivos/reload.jpg" class="reload none">
     </div>
 
-    <script>
-        const personagem = document.querySelector('.personagem');
-        const vilao = document.querySelector('.vilao');
-        const scoreHtml = document.querySelector('.score');
-
-        let score = 0;
-
-        document.addEventListener('keyup', (e) => {
-            if (e.code == "Space") {
-                personagem.classList.add('pular');
-    
-                setTimeout(() => {
-                    personagem.classList.remove('pular');
-                }, 800)
-            }
-        })
-
-        const verifica = setInterval(() => {
-            const posicaoVilao = vilao.offsetLeft;
-            const posicaoPersona = window.getComputedStyle(personagem).bottom.replace('px', '');
-
-            if (posicaoVilao <= 50 && posicaoVilao > 0 && posicaoPersona < 80) {
-                vilao.style.animation = 'none';
-                vilao.style.left = posicaoVilao+'px';
-
-                personagem.style.animation = 'none';
-                personagem.style.bottom = posicaoPersona+'px';
-
-                button.classList.toggle('none');
-                
-                clearInterval(verifica);
-            } else {
-                score += 1;
-                scoreHtml.innerText = score;
-            }
-
-        }, 10)
-
-        const button = document.querySelector('.reload');
-
-        button.addEventListener('click', () => {
-            location.reload();
-        })
-
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
